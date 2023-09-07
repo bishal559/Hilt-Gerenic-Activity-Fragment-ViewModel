@@ -1,31 +1,93 @@
-# Hilt-Gerenic-Activity-Fragment-ViewModel
-Hilt-Generic-Activity-Fragment-ViewModel is an Android architectural pattern that combines Hilt for dependency injection, Activity/Fragment for UI presentation, and ViewModel for data and logic management. It promotes code reuse, modularity, and clean architecture in Android app development.
-Hilt-Generic-Activity-Fragment-ViewModel
 
-Hilt-Generic-Activity-Fragment-ViewModel is an Android architectural pattern that combines Hilt, Activity, Fragment, and ViewModel to provide a structured and efficient approach to data and logic management in Android apps.
+# Hilt-Generic Android Activity , Fragment Base and ViewModel Classes with Hilt Integration
 
-Overview
+This repository contains a set of generic base classes for Android app development, including `BaseActivity`, `BaseFragment`,`BaseViewMdeol`, and Hilt integration. These base classes are designed to help you streamline the development of your Android app by providing a foundation for common functionality.
 
-This architectural pattern leverages the following components:
+## Table of Contents
 
-Hilt: A dependency injection library provided by Google, simplifying dependency injection and reducing boilerplate code.
-Activity: Represents a single screen with a user interface.
-Fragment: A reusable portion of a user interface.
-ViewModel: Manages UI-related data in a lifecycle-aware manner, promoting separation of concerns and facilitating code maintainability.
-By using Hilt for dependency injection, dependencies can be easily injected into Activity and Fragment classes. The ViewModel is then utilized within these UI components to handle data and logic. The pattern encourages code reuse and modularity by making the ViewModel generic and shareable across multiple activities or fragments.
+- [BaseActivity](#baseactivity)
+- [BaseFragment](#basefragment)
+- [BaseViewModel](#baseviewmodel)
+- [Hilt Integration](#hilt-integration)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Key Benefits
+## BaseActivity
 
-Promotes code reuse and modularity.
-Simplifies dependency management through Hilt.
-Separates data management and logic from the UI layer.
-Facilitates clean architecture and maintainable code.
-Usage
+`BaseActivity` is an abstract base class for Android `AppCompatActivity` that simplifies the setup of data binding, ViewModel integration, and Hilt dependency injection. It provides the following features:
 
-To implement the Hilt-Generic-Activity-Fragment-ViewModel pattern in your Android app:
+- Data binding setup
+- ViewModel integration
+- Dependency injection support (Hilt)
 
-Set up Hilt in your project by following the official Hilt documentation.
-Create your Activity and Fragment classes, and annotate them with @AndroidEntryPoint to enable Hilt injection.
-Implement your ViewModel class, extending ViewModel, and define the necessary data and logic.
-Inject dependencies into your ViewModel using Hilt annotations, such as @Inject.
-Use the ViewModel within your Activity or Fragment to handle data and logic, while keeping the UI layer separate and lightweight.
+### Example Usage:
+
+```kotlin
+@AndroidEntryPoint
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    // Override layoutRes, bindingVariable, and viewModel as needed
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Add your specific code here
+    }
+}
+```
+
+## BaseFragment
+
+`BaseFragment` is an abstract base class for Android `Fragment` that simplifies data binding, ViewModel integration, and Hilt dependency injection, similar to `BaseActivity`. It provides the following features:
+
+- Data binding setup
+- ViewModel integration
+- Dependency injection support (Hilt)
+
+### Example Usage:
+
+```kotlin
+@AndroidEntryPoint
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+    // Override layoutRes, bindingVariable, and viewModel as needed
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Add your specific code here
+    }
+}
+```
+
+
+## BaseViewModel
+
+`BaseViewModel` is an abstract base class for Android `ViewModel`. It's designed to be extended for creating ViewModel classes with Hilt dependency injection support.
+
+### Example Usage:
+
+```kotlin
+@HiltViewModel
+class MainViewModel @Inject constructor(private val sharedPrefs: SharedPrefs) : BaseViewModel() {
+    // Add your specific ViewModel logic here
+}
+```
+
+## Hilt Integration
+
+Hilt is a dependency injection library for Android. The code in this repository includes Hilt integration for `BaseActivity` and `BaseFragment`. Ensure that your project is set up with Hilt properly to take full advantage of dependency injection.
+
+## Usage
+
+To use these generic base classes in your Android project, you can simply extend them and override the necessary properties and methods according to your specific requirements. Make sure you have Hilt properly integrated into your project for dependency injection.
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to open a pull request or create an issue if you have any suggestions or improvements.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+© 2023 [Bishal Adhikari]. All rights reserved.
+
